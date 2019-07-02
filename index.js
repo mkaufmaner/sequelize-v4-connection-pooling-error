@@ -3,7 +3,6 @@
 
 const Sequelize = require('sequelize');
 const Promise = require('bluebird');
-const util = require('util');
 const debug = require('debug')('test');
 const _ = require('lodash');
 
