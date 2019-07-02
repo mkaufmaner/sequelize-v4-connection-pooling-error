@@ -1,0 +1,12 @@
+# Folders
+.idea
+.vs
+.git
+bourbon/
+neat/
+keys/
+coverage/
+docs/
+keys/
+node_modules/
+dist/

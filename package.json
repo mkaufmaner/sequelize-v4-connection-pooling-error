@@ -1,0 +1,30 @@
+{
+  "name": "sequelize-v4-connection-pooling-error",
+  "version": "1.0.0",
+  "description": "Connection pooling error under heavy load with postgres.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkaufmaner/sequelize-v4-connection-pooling-error.git"
+  },
+  "author": "Michael Kaufman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkaufmaner/sequelize-v4-connection-pooling-error/issues"
+  },
+  "homepage": "https://github.com/mkaufmaner/sequelize-v4-connection-pooling-error#readme",
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^4.44.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
