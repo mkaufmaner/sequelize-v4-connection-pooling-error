@@ -136,13 +136,15 @@ destroy: mayBeConnection => {
 
 Subsequently, acquired connections that are an instance of an error never get destroyed in their respective pool!
 
-I ended up decoupling the request and process to diagnose this.  Where I had a client making several simultaneous request.  I set a break point accordingly in the generic pool when a connection is acquired and all of the pooled resources are `ALLOCATED` error objects.
+I ended up decoupling the request and process to diagnose this problem.  This consisted of a client process making several simultaneous HTTP requests to a process which would query the database.  I set a break point accordingly in the generic pool where a connection is acquired when the `Unhandled rejection TimeoutError: ResourceRequest timed out` started appearing.  As you can see below all of the pool entries are `ALLOCATED` error objects.
 
 ![Errored Pool 1](https://github.com/mkaufmaner/sequelize-v4-connection-pooling-error/raw/master/misc/errored_pool_1.png "Errored Pool 1")
 
 ![Errored Pool 1](https://github.com/mkaufmaner/sequelize-v4-connection-pooling-error/raw/master/misc/errored_pool_2.png "Errored Pool 1")
 
 ## Fix
+
+The changes below allow for the pool to recover from its errored state.
 
 https://github.com/sequelize/sequelize/blame/v4/lib/dialects/abstract/connection-manager.js#L162
 ```js
@@ -177,13 +179,15 @@ Dialect:
 - [x] postgres
 - [ ] sqlite
 - [ ] mssql
-- [ ] any
-Dialect **library** version: 7.8.0
-Database version: 10
-Sequelize version: v4.44.0
-Node Version: 10
-OS: macOS
-If TypeScript related: TypeScript version: XXX
+- [x] any
+
+- Dialect **library** version: 7.8.0
+- Database version: 10
+- Sequelize version: v4.44.0
+- Node Version: 10
+- OS: macOS
+- If TypeScript related: TypeScript version: XXX
+
 Tested with latest release:
 - [ ] No
 - [X] Yes, specify that version: 4.44.0
